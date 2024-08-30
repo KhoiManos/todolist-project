@@ -9,16 +9,20 @@ public class Main {
     private Todo todo;
     private ArrayList<String> todoList = new ArrayList<>();
     private static Main mainInstanz;
+    private String todoText;
 
 
     public static void main(String[] args) {
         mainInstanz = new Main();
         kurz = JOptionPane.showInputDialog("Welcome to your personal to-do List!\n Please enter your to-do.");
+
         mainInstanz.frame = new MyFrame();
+        mainInstanz.frame.createAll();
         mainInstanz.frame.addButtonActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainInstanz.addTodoToList();
+                mainInstanz.frame.setVisible(false);
             }
         });
 
@@ -34,6 +38,10 @@ public class Main {
         System.out.println(todoList.getFirst());
     }
 
+    public String todoText(){
+        todoText = String.join("\n",todoList);
+        return todoText;
+    }
 
 }
 

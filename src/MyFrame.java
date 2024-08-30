@@ -28,17 +28,17 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
         this.setSize(400,300);
+        this.setLocationRelativeTo(null);
+    };
 
+    public void createAll(){
         createPanel();
-
         createLabelsText1();
         createLabelsText2();
         createLabelsText3();
         createEnterButton();
-
         this.setVisible(true);
-
-    };
+    }
 
     public void createPanel(){
         panel = new JPanel();
@@ -47,7 +47,7 @@ public class MyFrame extends JFrame implements ActionListener {
     }
 
     public void createLabelsText1(){
-        rankLabel = new JLabel("Beginning from #1, what rank should it have?");
+        rankLabel = new JLabel("Beginning from 1, what rank should it have?");
         rankLabel.setBounds(10,20,300,25);
         this.add(rankLabel);
 
@@ -83,13 +83,10 @@ public class MyFrame extends JFrame implements ActionListener {
         this.add(enterbutton);
     }
 
-    //public void checkedButton(){
-   //     button = new JButton();
-   //     button.setBounds(150,200,50,30);
-   //     this.add(button);
 
-    //}
-
+    public void addButtonActionListener(ActionListener listener) {
+        enterbutton.addActionListener(listener);
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==enterbutton) {
@@ -100,9 +97,6 @@ public class MyFrame extends JFrame implements ActionListener {
         }
     }
 
-    public void addButtonActionListener(ActionListener listener) {
-        enterbutton.addActionListener(listener);
-    }
 
     public int getRank(){
         return rank;
