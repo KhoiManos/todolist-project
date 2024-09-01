@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 public class MyFrame extends JFrame implements ActionListener {
     private JPanel panel;
     private JButton enterbutton;
-    //private JButton button;
 
     private JLabel rankLabel;
     private JLabel quickNote;
@@ -22,12 +21,10 @@ public class MyFrame extends JFrame implements ActionListener {
     private boolean buttonPressed = false;
 
 
-
-
     MyFrame(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
-        this.setSize(400,300);
+        this.setSize(550,300);
         this.setLocationRelativeTo(null);
     };
 
@@ -80,6 +77,7 @@ public class MyFrame extends JFrame implements ActionListener {
     public void createEnterButton(){
         enterbutton = new JButton("Enter");
         enterbutton.setBounds(0,160,80,25);
+        buttonPressed = false;
         this.add(enterbutton);
     }
 
@@ -90,11 +88,15 @@ public class MyFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==enterbutton) {
-            rank = Integer.parseInt(rank_text.getText());
-            quickiNote = quickNote_text.getText();
-            zeiti = zeittext.getText();
-            buttonPressed = true;
+            setValues();
         }
+    }
+
+    public void setValues(){
+        rank = Integer.parseInt(rank_text.getText());
+        quickiNote = quickNote_text.getText();
+        zeiti = zeittext.getText();
+        buttonPressed = true;
     }
 
 
@@ -108,7 +110,8 @@ public class MyFrame extends JFrame implements ActionListener {
         return zeiti;
     }
 
-    public boolean isButtonPressed(){
+    public boolean isButtonPressed() {
+        buttonPressed = true;
         return buttonPressed;
     }
 }

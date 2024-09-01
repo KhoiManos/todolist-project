@@ -10,6 +10,8 @@ public class Main {
     private ArrayList<String> todoList = new ArrayList<>();
     private static Main mainInstanz;
     private String todoText;
+    private TodoList actuallist;
+    private String todoString;
 
 
     public static void main(String[] args) {
@@ -21,26 +23,31 @@ public class Main {
         mainInstanz.frame.addButtonActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainInstanz.addTodoToList();
-                mainInstanz.frame.setVisible(false);
+                mainInstanz.frame.setValues();
+
+                if(mainInstanz.frame.isButtonPressed()) {
+                    mainInstanz.addTodoToList();
+                    mainInstanz.frame.setVisible(false);
+                    mainInstanz.actuallist = new TodoList(mainInstanz);
+                }
             }
         });
 
     }
+
+    public void addTodoToList(){
+        addTodo();
+        System.out.println(todo);
+        todoString = todo.toString();
+        todoList.add(todoString);
+    }
+
     public void addTodo(){
         todo = new Todo(kurz, frame.getRank(), frame.getZeiti(), frame.getQuickiNote(), false);
     }
 
-    public void addTodoToList(){
-        addTodo();
-        String todoString = todo.toString();
-        todoList.add(todoString);
-        System.out.println(todoList.getFirst());
-    }
-
-    public String todoText(){
-        todoText = String.join("\n",todoList);
-        return todoText;
+    public String getTodoString(){
+        return todoString;
     }
 
 }
